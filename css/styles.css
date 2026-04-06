@@ -33,17 +33,18 @@ a:focus {
 
 /* Header */
 header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   background: #fff;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem 1rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
 }
 
 .header-inner {
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 /* Logotype */
@@ -54,72 +55,96 @@ header h1 {
   color: var(--logotype-green);
   margin: 0;
   letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
 }
 
-/* Burger button */
+/* Navigation */
+nav.main-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.015em;
+}
+
+/* Sticky header on desktop */
+@media (min-width: 601px) {
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+}
+
+/* Burger menu button - hidden on desktop */
 .burger {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
-  background: transparent;
+  background: none;
   border: none;
   cursor: pointer;
   padding: 0;
+  width: 28px;
+  height: 24px;
+  flex-shrink: 0;
+  position: relative;
   z-index: 1001;
 }
 
 .burger span {
   display: block;
-  height: 2px;
+  width: 100%;
+  height: 3px;
   background-color: var(--logotype-green);
-  border-radius: 1px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
 }
 
-/* Navigation */
-.main-nav {
-  display: flex;
-  gap: 1.5rem;
+.burger span:last-child {
+  margin-bottom: 0;
 }
 
-/* Mobile responsive */
+/* Mobile styles */
 @media (max-width: 600px) {
-  .burger {
-    display: flex;
+  header {
+    padding: 1rem 1rem 0.75rem;
   }
 
-  .main-nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    background: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-
-  .main-nav.active {
-    display: flex;
+  .header-inner {
+    padding: 0;
+    gap: 0.75rem;
   }
 
   header h1 {
     font-size: 1.5rem;
   }
 
-  main {
-    padding: 0 1rem;
+  nav.main-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    background: #fff;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    padding: 0.5rem 1rem;
+    display: none;
+    width: 220px;
   }
 
-  .calendar-table td {
-    padding: 0.4rem 0;
+  nav.main-nav.active {
+    display: flex;
   }
 
-  .calendar-table td:nth-child(2),
-  .calendar-table td:nth-child(3) {
-    padding-left: 0.25rem;
+  nav.main-nav a {
+    padding: 0.5rem 0;
+  }
+
+  .burger {
+    display: block;
   }
 }
 
@@ -185,13 +210,32 @@ p {
 }
 
 /* News spacing */
-#news-container > div {
+#news-content > div {
   margin-bottom: 2rem;
 }
 
 /* Contact spacing */
-#contact-container p {
-  margin-bottom: 0.8rem;
+#contact-social ul {
+  padding-left: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: disc;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  main {
+    padding: 0 1rem;
+  }
+
+  .calendar-table td {
+    padding: 0.4rem 0;
+  }
+
+  .calendar-table td:nth-child(2),
+  .calendar-table td:nth-child(3) {
+    padding-left: 0.25rem;
+  }
 }
 
 /* Smooth scrolling */

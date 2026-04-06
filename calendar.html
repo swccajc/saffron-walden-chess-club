@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saffron Walden Chess Club – Calendar</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saffron Walden Chess Club – Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-<!-- Dynamic header -->
-<div id="header-container"></div>
+  <div id="header-container"></div>
 
-<main>
-  <section id="calendar-container">
-    <!-- JS will populate upcoming events table -->
-  </section>
-</main>
+  <main>
+    <div id="calendar-container"></div>
+  </main>
 
-<script src="js/header.js" defer></script>
-<script src="js/calendar.js" defer></script>
+  <script src="js/header.js" defer></script>
+  <script src="js/calendar.js" defer></script>
+  <script defer>
+    (async () => {
+      await window.loadHeader();
+      // calendar.js automatically runs loadCalendar on load, so no extra call needed here
+    })();
+  </script>
 </body>
 </html>

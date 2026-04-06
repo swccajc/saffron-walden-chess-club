@@ -1,34 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saffron Walden Chess Club – Contact</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saffron Walden Chess Club – Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-<!-- Dynamic header -->
-<div id="header-container"></div>
+  <div id="header-container"></div>
 
-<main>
-  <section id="contact-venue">
-    <h2>Venue</h2>
-    <div class="event-details" id="venue-details">
-      <!-- JS will populate map & address -->
-    </div>
-  </section>
+  <main>
+    <section id="contact-venue">
+      <h2>Venue</h2>
+      <div class="event-details" id="venue-details">
+        <!-- JS will populate map & address -->
+      </div>
+    </section>
 
-  <section id="contact-social">
-    <h2>Social</h2>
-    <ul id="social-links">
-      <!-- JS will populate Facebook & Chess.com links -->
-    </ul>
-  </section>
-</main>
+    <section id="contact-social">
+      <h2>Social</h2>
+      <ul id="social-links">
+        <!-- JS will populate Facebook & Chess.com links -->
+      </ul>
+    </section>
+  </main>
 
-<script src="js/header.js" defer></script>
-<script src="js/contact.js" defer></script>
+  <script src="js/header.js" defer></script>
+  <script defer>
+    (async () => {
+      await window.loadHeader();
+
+      // Load venue info (from next event)
+      const [eventsText, locationsText] = await Promise.all([
+        fetch('content/events.csv').then(r => r.text()),
+        fetch('content/locations.txt').then(r => r.text()),
+      ]);
+
+      const locations = {};
+      locationsText.split('\n').forEach(line => {
+        const [key, name, address, map_url] = line.split('|');
+        if (key) locations[key.trim()] = { name, address, map_url };
+      });
+
+      const today = new Date();
+      const events = eventsText.split('\n').slice(1).map(line => {
+        if (!line.trim()) return null;
+        const [date, time, location_key, note] = line.split(',');
+        return { date, time, location_key, note };
+      }).filter(e => e && new Date(e.date + "T00:00:00") >= today);
+
+      if (events.length > 0) {
+        events.sort((a, b) => new Date(a.date) - new Date(b.date));
+        const nextEvent = events[0];
+        const location = locations[nextEvent.location_key];
+        const venueContainer = document.getElementById('venue-details');
+
+        if (venueContainer && location) {
+          venueContainer.innerHTML = `
+            <p><strong>${location.name}</strong><br>${location.address.replace(/, /g,'<br>')}</p>
+            <iframe src="${location.map_url}&output=embed" loading="lazy" title="Map showing ${location.name}"></iframe>
+          `;
+        }
+      }
+
+      // Load social links from contact.txt (if exists)
+      const socialContainer = document.getElementById('social-links');
+      try {
+        const socialResp = await fetch('content/contact.txt');
+        if (!socialResp.ok) throw new Error('No contact.txt found');
+        const lines = (await socialResp.text()).split('\n').filter(Boolean);
+        lines.forEach(line => {
+          const [platform, url] = line.split('|').map(s => s.trim());
+          if (platform && url) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = url;
+            a.textContent = platform;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            li.appendChild(a);
+            socialContainer.appendChild(li);
+          }
+        });
+      } catch {
+        // no contact.txt or error, silently ignore
+      }
+    })();
+  </script>
 </body>
 </html>

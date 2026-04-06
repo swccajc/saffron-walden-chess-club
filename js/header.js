@@ -1,23 +1,25 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  // Load header.html into every page
+// header.js - loads header.html and sets up burger menu, returns a Promise for when ready
+window.loadHeader = async function() {
   const container = document.getElementById('header-container');
-  if (container) {
-    try {
-      const resp = await fetch('includes/header.html');
-      const html = await resp.text();
-      container.innerHTML = html;
+  if (!container) return;
 
-      // After injecting, set up burger menu
-      const burger = container.querySelector('.burger');
-      const nav = container.querySelector('.main-nav');
-      if (burger && nav) {
-        burger.addEventListener('click', () => {
-          const expanded = nav.classList.toggle('active');
-          burger.setAttribute('aria-expanded', expanded);
-        });
-      }
-    } catch (err) {
-      console.error('Failed to load header:', err);
+  try {
+    const resp = await fetch('includes/header.html');
+    if (!resp.ok) throw new Error(`Failed to fetch header.html: ${resp.status}`);
+
+    container.innerHTML = await resp.text();
+
+    const burger = container.querySelector('.burger');
+    const nav = container.querySelector('.main-nav');
+
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        const expanded = nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded', expanded);
+      });
     }
+
+  } catch (err) {
+    console.error(err);
   }
-});
+};
