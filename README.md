@@ -1,1 +1,0 @@
-# saffron-walden-chess-club

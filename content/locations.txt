@@ -1,2 +1,0 @@
-jubilee_hub|The Jubilee Hub|3 Hill Street, Saffron Walden, CB10 1EH|https://www.google.com/maps?q=The+Jubilee+Hub,+3+Hill+Street,+Saffron+Walden
-walden_common|Saffron Walden Common|Saffron Walden|https://www.google.com/maps?q=Saffron+Walden+Common
