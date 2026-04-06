@@ -10,6 +10,9 @@
 </head>
 <body>
 
+<!-- Dynamic header -->
+<div id="header-container"></div>
+
 <main>
   <section id="about">
     <h2>About</h2>
@@ -18,16 +21,13 @@
 
   <section id="calendar">
     <h2>Next event</h2>
-    <div id="next-event"></div>
+    <div class="event-details">
+      <!-- JS will populate next event including location address and map -->
+    </div>
   </section>
 </main>
 
-<script src="js/header.js"></script>
-<script src="js/calendar.js"></script>
-<script src="js/index.js"></script>
-<script>
-  loadNextEvent('next-event');
-</script>
-
+<script src="js/header.js" defer></script>
+<script src="js/index.js" defer></script>
 </body>
 </html>
