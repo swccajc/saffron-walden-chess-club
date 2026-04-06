@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saffron Walden Chess Club – Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --logotype-green: #417251;
+  --grey-hover: #5c5c5c;
+}
+
+/* Base */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  background-color: #fff;
+  color: #000;
+  line-height: 1.55;
+  font-size: 16px;
+}
+a { color: inherit; text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; color: var(--grey-hover); }
+
+/* Header */
+header {
+  padding: 2rem 2rem 1.5rem;
+  background: #fff;
+}
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--logotype-green);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+nav { display: flex; gap: 1.5rem; }
+/* Removed Home link */
+nav a { font-weight: 400; font-size: 1rem; letter-spacing: 0.015em; }
+nav a:hover, nav a:focus { text-decoration: underline; }
+
+@media (min-width: 601px) { header { position: sticky; top: 0; z-index: 1000; } }
+
+/* Main */
+main { max-width: 900px; margin: 2rem auto 3rem; padding: 0 2rem; }
+
+/* Page heading */
+h2.page-heading { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.5rem 0; }
+
+/* Body text under heading */
+p.body-text { margin: 0 0 1.5rem 0; font-weight: 400; font-size: 1rem; line-height: 1.55; }
+
+/* Year heading */
+h2.year { font-size: 1.1rem; font-weight: 600; margin: 1rem 0 0.5rem 0; color: #000; }
+
+/* Calendar table */
+.calendar-table { width: 100%; border-collapse: collapse; font-weight: 400; }
+.calendar-table td { padding: 0.5rem 0; vertical-align: top; }
+.calendar-table .date { width: 33%; text-align: left; }
+.calendar-table .location { width: 33%; text-align: left; padding-left: 0.5rem; }
+.calendar-table .note { width: 33%; text-align: left; padding-left: 0.5rem; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  h2.page-heading { font-size: 1.1rem; }
+  h2.year { font-size: 1rem; }
+  main { padding: 0 1rem; }
+  .calendar-table td { padding: 0.4rem 0; }
+  .calendar-table .location,
+  .calendar-table .note { padding-left: 0.25rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1><a href="index.html">Saffron Walden Chess Club</a></h1>
+    <nav aria-label="Main navigation">
+      <a href="calendar.html">Calendar</a>
+      <a href="#">News</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h2 class="page-heading">Calendar</h2>
+  <p class="body-text">
+    Saffron Walden Chess Club meets every fortnight and hosts regular social events, welcoming people of all ages and abilities to join us for friendly games, tournaments, and learning opportunities.
+  </p>
+
+  <!-- 2026 -->
+  <h2 class="year">2026</h2>
+  <table class="calendar-table">
+    <tbody>
+      <tr data-date="2026-04-10"><td class="date">19:30 Thursday 10<sup>th</sup> April</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2026-04-24"><td class="date">19:30 Thursday 24<sup>th</sup> April</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2026-05-08"><td class="date">19:30 Thursday 8<sup>th</sup> May</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2026-05-22"><td class="date">19:30 Thursday 22<sup>nd</sup> May</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2026-06-27"><td class="date">11:00 Thursday 27<sup>th</sup> June</td><td class="location">Saffron Walden Common</td><td class="note">Saffron Walden Community Day</td></tr>
+      <tr data-date="2026-06-10"><td class="date">19:30 Thursday 10<sup>th</sup> June</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2026-06-24"><td class="date">19:30 Thursday 24<sup>th</sup> June</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2026-12-09"><td class="date">19:30 Thursday 9<sup>th</sup> December</td><td class="location">The Jubilee Hub</td><td class="note">Thomson Trophy final</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 2027 -->
+  <h2 class="year">2027</h2>
+  <table class="calendar-table">
+    <tbody>
+      <tr data-date="2027-01-06"><td class="date">19:30 Thursday 6<sup>th</sup> January</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2027-01-20"><td class="date">19:30 Thursday 20<sup>th</sup> January</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2027-02-03"><td class="date">19:30 Thursday 3<sup>rd</sup> February</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2027-02-17"><td class="date">19:30 Thursday 17<sup>th</sup> February</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+      <tr data-date="2027-03-03"><td class="date">19:30 Thursday 3<sup>rd</sup> March</td><td class="location">The Jubilee Hub</td><td class="note"></td></tr>
+    </tbody>
+  </table>
+
+</main>
+
+<script>
+// Filter rows to show only dates >= today and <= today + 365 days
+const today = new Date();
+const maxDate = new Date();
+maxDate.setDate(today.getDate() + 365);
+
+document.querySelectorAll('.calendar-table tbody tr').forEach(row => {
+  const dateStr = row.getAttribute('data-date');
+  if (!dateStr) return;
+  const rowDate = new Date(dateStr + "T00:00:00");
+  if (rowDate < today || rowDate > maxDate) {
+    row.style.display = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
