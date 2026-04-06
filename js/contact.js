@@ -1,20 +1,22 @@
-(async () => {
-  const text = await loadText('content/news.txt');
-  const entries = text.trim().split('\n\n');
+// Load social links
+fetch('content/contact.txt')
+  .then(res => res.text())
+  .then(text => {
+    const container = document.getElementById('contact-container');
+    const data = {};
+    text.split('\n').forEach(line => {
+      const [key, val] = line.split('|');
+      if(key) data[key.trim()] = val.trim();
+    });
 
-  const container = document.getElementById('news-container');
-
-  entries.forEach(entry => {
-    const [header, body] = entry.split('\n');
-    const [date, title] = header.split('|');
-
-    const div = document.createElement('div');
-    div.innerHTML = `
-      <h3>${title}</h3>
-      <p><em>${date}</em></p>
-      <p>${body}</p>
-    `;
-
-    container.appendChild(div);
-  });
-})();
+    if(container){
+      container.innerHTML = '';
+      if(data.facebook){
+        container.innerHTML += `<p>Join us on Facebook: <a href="${data.facebook}" target="_blank" rel="noopener">Saffron Walden Chess Club Facebook Group</a></p>`;
+      }
+      if(data.chesscom){
+        container.innerHTML += `<p>Our Chess.com club: <a href="${data.chesscom}" target="_blank" rel="noopener">Saffron Walden UK</a></p>`;
+      }
+    }
+  })
+  .catch(err => console.error('Failed to load contact.txt', err));

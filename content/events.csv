@@ -1,10 +1,9 @@
-date,time,location,note
-2026-04-10,19:30,The Jubilee Hub,
-2026-04-24,19:30,The Jubilee Hub,
-2026-05-08,19:30,The Jubilee Hub,
-2026-05-22,19:30,The Jubilee Hub,
-2026-06-10,19:30,The Jubilee Hub,
-2026-06-24,19:30,The Jubilee Hub,
-2026-06-27,11:00,Saffron Walden Common,Community Day
-2026-12-09,19:30,The Jubilee Hub,Thomson Trophy final
-2027-01-06,19:30,The Jubilee Hub,
+date,time,location_key,note
+2026-04-10,19:30,jubilee_hub,
+2026-04-24,19:30,jubilee_hub,
+2026-05-08,19:30,jubilee_hub,
+2026-05-22,19:30,jubilee_hub,
+2026-06-10,19:30,jubilee_hub,
+2026-06-24,19:30,jubilee_hub,
+2026-06-27,11:00,walden_common,Saffron Walden Community Day
+2026-12-09,19:30,jubilee_hub,Thomson Trophy final
