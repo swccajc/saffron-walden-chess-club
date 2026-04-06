@@ -4,151 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saffron Walden Chess Club – Calendar</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
-
-<style>
-  .year-group {
-    margin-top: 2rem;
-  }
-
-  .event-row {
-    display: grid;
-    grid-template-columns: 2fr 2fr 3fr;
-    gap: 1rem;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid #eee;
-  }
-
-  .col-1 {
-    font-weight: 500;
-  }
-
-  .col-2 {
-    color: #333;
-  }
-
-  .col-3 {
-    color: #666;
-  }
-</style>
 </head>
-
 <body>
-
-<header>
-  <div class="header-inner">
-    <h1><a href="index.html">Saffron Walden Chess Club</a></h1>
-    <nav aria-label="Main navigation">
-      <a href="calendar.html">Calendar</a>
-      <a href="news.html">News</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
 
 <main>
   <h2>Club Calendar</h2>
   <div id="calendar-container"></div>
 </main>
 
+<script src="js/header.js"></script>
+<script src="js/calendar.js"></script>
 <script>
-async function loadData() {
-  const [eventsRes, locationsRes] = await Promise.all([
-    fetch('content/events.csv'),
-    fetch('content/locations.txt')
-  ]);
-
-  const eventsText = await eventsRes.text();
-  const locationsText = await locationsRes.text();
-
-  const locations = parseLocations(locationsText);
-  let events = parseEvents(eventsText);
-
-  // Filter: today → +365 days
-  const today = new Date();
-  today.setHours(0,0,0,0);
-
-  const futureLimit = new Date();
-  futureLimit.setDate(today.getDate() + 365);
-
-  events = events.filter(e => {
-    const d = new Date(e.date);
-    return d >= today && d <= futureLimit;
-  });
-
-  render(events, locations);
-}
-
-function parseLocations(text) {
-  const map = {};
-  text.trim().split('\n').forEach(line => {
-    const [key, name] = line.split('|');
-    map[key] = name;
-  });
-  return map;
-}
-
-function parseEvents(text) {
-  return text.trim().split('\n').slice(1).map(row => {
-    const [date, time, location_key, note] = row.split(',');
-    return { date, time, location_key, note };
-  }).sort((a, b) => new Date(a.date) - new Date(b.date));
-}
-
-function formatDateTime(dateStr, timeStr) {
-  const d = new Date(dateStr);
-
-  const formattedDate = d.toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long'
-  });
-
-  return `${timeStr} ${formattedDate}`;
-}
-
-function render(events, locations) {
-  const container = document.getElementById('calendar-container');
-
-  const grouped = {};
-  events.forEach(e => {
-    const year = new Date(e.date).getFullYear();
-    if (!grouped[year]) grouped[year] = [];
-    grouped[year].push(e);
-  });
-
-  Object.keys(grouped).sort().forEach(year => {
-    const section = document.createElement('div');
-    section.className = 'year-group';
-
-    const heading = document.createElement('h3');
-    heading.textContent = year;
-    section.appendChild(heading);
-
-    grouped[year].forEach(event => {
-      const row = document.createElement('div');
-      row.className = 'event-row';
-
-      const dateTime = formatDateTime(event.date, event.time);
-      const location = locations[event.location_key] || event.location_key;
-      const note = event.note || '';
-
-      row.innerHTML = `
-        <div class="col-1">${dateTime}</div>
-        <div class="col-2">${location}</div>
-        <div class="col-3">${note}</div>
-      `;
-
-      section.appendChild(row);
-    });
-
-    container.appendChild(section);
-  });
-}
-
-loadData();
+  loadCalendar();
 </script>
 
 </body>
