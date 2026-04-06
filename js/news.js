@@ -1,12 +1,13 @@
-fetch('content/news.txt')
-  .then(res => res.text())
-  .then(text => {
-    const container = document.getElementById('news-container');
-    text.split('\n').forEach(line => {
-      if(!line.trim()) return;
-      const [title, content] = line.split('|');
-      const article = document.createElement('article');
-      article.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
-      container.appendChild(article);
-    });
+async function loadNews() {
+  const resp = await fetch('content/news.txt');
+  const text = resp.text ? await resp.text() : '';
+  const container = document.getElementById('news-content');
+  text.split('\n\n').forEach(item => { // assume double newline separates news items
+    if (!item.trim()) return;
+    const p = document.createElement('p');
+    p.textContent = item.trim();
+    container.appendChild(p);
   });
+}
+
+loadNews();
