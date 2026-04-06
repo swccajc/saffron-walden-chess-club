@@ -1,22 +1,9 @@
-/* -------------------- VARIABLES -------------------- */
 :root {
   --grey-hover: #5c5c5c;
   --logotype-green: #417251;
-
-  /* spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 2rem;
-
-  /* font sizes */
-  --font-base: 16px;
-  --font-h1: 2rem;
-  --font-h2: 1.25rem;
-  --font-h3: 1.05rem;
 }
 
-/* -------------------- BASE -------------------- */
+/* Base styles */
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   margin: 0;
@@ -24,13 +11,12 @@ body {
   color: #000;
   line-height: 1.55;
   letter-spacing: 0.02em;
-  font-size: var(--font-base);
+  font-size: 16px;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
 a:hover,
@@ -45,21 +31,24 @@ a:focus {
   outline-offset: 2px;
 }
 
-/* -------------------- HEADER -------------------- */
+/* Header */
 header {
-  padding: var(--space-lg);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background: #fff;
+  padding: 1rem 2rem;
 }
 
 .header-inner {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: var(--space-xs);
 }
 
+/* Logotype */
 header h1 {
-  font-size: var(--font-h1);
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--logotype-green);
@@ -67,79 +56,92 @@ header h1 {
   letter-spacing: -0.015em;
 }
 
-nav {
+/* Burger button */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background-color: var(--logotype-green);
+  border-radius: 1px;
+}
+
+/* Navigation */
+.main-nav {
   display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
-/* Sticky header */
-@media (min-width: 601px) {
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  .burger {
-    display: none;
-  }
-}
-
+/* Mobile responsive */
 @media (max-width: 600px) {
-  header {
-    padding: var(--space-md) var(--space-sm) var(--space-sm);
-  }
-  header h1 {
-    font-size: 1.5rem;
-  }
   .burger {
-    display: block;
-    position: sticky;
-    top: 0;
-    background: #fff;
-    z-index: 1000;
-    border: none;
-    padding: var(--space-xs) var(--space-sm);
-    cursor: pointer;
+    display: flex;
   }
-  .burger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--logotype-green);
-    margin: 5px 0;
-  }
+
   .main-nav {
     display: none;
     flex-direction: column;
-    background: #fff;
+    position: absolute;
+    top: 100%;
+    right: 0;
     width: 100%;
-    padding: var(--space-md) 0;
+    background: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
+
   .main-nav.active {
     display: flex;
   }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    padding: 0 1rem;
+  }
+
+  .calendar-table td {
+    padding: 0.4rem 0;
+  }
+
+  .calendar-table td:nth-child(2),
+  .calendar-table td:nth-child(3) {
+    padding-left: 0.25rem;
+  }
 }
 
-/* -------------------- MAIN -------------------- */
+/* Main content */
 main {
   max-width: 900px;
-  margin: var(--space-lg) auto var(--space-lg);
-  padding: 0 var(--space-lg);
+  margin: 2rem auto 3rem;
+  padding: 0 2rem;
 }
 
 section {
-  margin-bottom: var(--space-lg);
+  margin-bottom: 3rem;
 }
 
 /* Headings */
 h2 {
-  font-size: var(--font-h2);
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   text-transform: lowercase;
   margin-top: 0;
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0.5rem;
 }
 
 h2::first-letter {
@@ -147,26 +149,29 @@ h2::first-letter {
 }
 
 h3 {
-  font-size: var(--font-h3);
+  font-size: 1.05rem;
   font-weight: 600;
-  margin: var(--space-md) 0 var(--space-xs) 0;
+  margin-bottom: 0.25rem;
+  margin-top: 1.5rem;
 }
 
 /* Paragraphs */
 p {
-  margin: 0 0 var(--space-sm) 0;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
   font-weight: 400;
   font-size: 1rem;
+  line-height: 1.55;
 }
 
-/* -------------------- CALENDAR & EVENTS -------------------- */
+/* Calendar table */
 .calendar-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 .calendar-table td {
-  padding: var(--space-xs) 0;
+  padding: 0.5rem 0;
   vertical-align: top;
 }
 
@@ -176,31 +181,17 @@ p {
 
 .calendar-table td:nth-child(2),
 .calendar-table td:nth-child(3) {
-  padding-left: var(--space-xs);
+  padding-left: 0.5rem;
 }
 
-/* Homepage next event / event-details */
-.event-details {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+/* News spacing */
+#news-container > div {
+  margin-bottom: 2rem;
 }
 
-.event-date a {
-  color: var(--logotype-green);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-/* Responsive tweaks */
-@media (max-width: 600px) {
-  main {
-    padding: 0 var(--space-sm);
-  }
-  .calendar-table td:nth-child(2),
-  .calendar-table td:nth-child(3) {
-    padding-left: var(--space-xs);
-  }
+/* Contact spacing */
+#contact-container p {
+  margin-bottom: 0.8rem;
 }
 
 /* Smooth scrolling */
