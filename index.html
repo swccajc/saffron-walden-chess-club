@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saffron Walden Chess Club</title>
+<meta name="description" content="Saffron Walden Chess Club – Join us for friendly chess games, tournaments, and learning opportunities for all skill levels.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --grey-hover: #5c5c5c;
+  --logotype-green: #417251;
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  background-color: #fff;
+  color: #000;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  font-size: 16px;
+}
+
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
+
+a:hover, a:focus {
+  color: var(--grey-hover);
+  text-decoration: underline;
+  outline: none;
+}
+
+a:focus {
+  outline: 2px solid var(--logotype-green);
+  outline-offset: 2px;
+}
+
+/* Header */
+header {
+  padding: 2rem 2rem 1.5rem;
+  background: #fff;
+}
+
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Logotype */
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--logotype-green);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+
+/* Sticky header on desktop */
+@media (min-width: 601px) {
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+}
+
+/* Main content */
+main {
+  max-width: 900px;
+  margin: 2rem auto 3rem;
+  padding: 0 2rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+/* Subheadings */
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+h2::first-letter {
+  text-transform: uppercase;
+}
+
+section p {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* Event details grid */
+.event-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.event-details iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-radius: 8px;
+  display: block;
+  margin: 0;
+  vertical-align: top;
+}
+
+/* Event date link and address spacing */
+.event-date {
+  margin-bottom: 0.4rem;
+}
+
+.event-date a {
+  color: var(--logotype-green);
+  font-weight: 500; /* slightly heavier for visibility */
+  text-decoration: none;
+}
+
+.event-date a:hover,
+.event-date a:focus {
+  text-decoration: underline;
+}
+
+.event-address {
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.1rem; }
+  main { padding: 0 1rem; }
+  .event-details {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .event-details iframe {
+    height: 200px;
+  }
+  header {
+    padding: 1.5rem 1rem 1rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1><a href="#">Saffron Walden Chess Club</a></h1>
+    <nav aria-label="Main navigation">
+      <a href="#calendar">Calendar</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <h2>About</h2>
+    <p>Welcome to Saffron Walden Chess Club! Our members enjoy a friendly atmosphere, challenging games, and opportunities to learn and improve, whether you are a beginner or an experienced player. We invite people of all ages and skill levels to join us.</p>
+  </section>
+
+  <section id="calendar">
+    <h2>Next event</h2>
+    <div class="event-details">
+      <div>
+        <p class="event-date"><a href="#">Thursday 9<sup>th</sup> April 2026</a></p>
+        <p class="event-address">
+          The Jubilee Hub<br>
+          3 Hill Street<br>
+          Saffron Walden<br>
+          CB10 1EH
+        </p>
+      </div>
+      <div>
+        <iframe
+          src="https://www.google.com/maps?q=The+Jubilee+Hub,+3+Hill+Street,+Saffron+Walden&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
