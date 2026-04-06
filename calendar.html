@@ -3,23 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendar – Saffron Walden Chess Club</title>
-
+<title>Saffron Walden Chess Club – Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
-<script defer src="js/main.js"></script>
-<script defer src="js/calendar.js"></script>
 </head>
-
 <body>
 
-<div id="header"></div>
+<header>
+  <div class="header-inner">
+    <h1><a href="index.html">Saffron Walden Chess Club</a></h1>
+    <nav aria-label="Main navigation">
+      <a href="calendar.html">Calendar</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
 
 <main>
-  <h2>Calendar</h2>
-  <table class="calendar-table">
-    <tbody id="calendar-body"></tbody>
-  </table>
+  <h2>Contact</h2>
+
+  <section id="location-section">
+    <h3>Venue</h3>
+    <div id="location-container">
+      <!-- JS will populate map & address from events/locations dynamically if needed -->
+    </div>
+  </section>
+
+  <section id="social-section">
+    <h3>Social</h3>
+    <div id="contact-container">
+      <!-- JS will populate Facebook and Chess.com links from contact.txt -->
+    </div>
+  </section>
 </main>
 
+<script src="js/contact.js"></script>
 </body>
 </html>
